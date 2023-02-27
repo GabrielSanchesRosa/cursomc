@@ -1,25 +1,8 @@
 package com.cursomc;
 
-import java.util.Arrays;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.cursomc.domain.Categoria;
-import com.cursomc.domain.Cidade;
-import com.cursomc.domain.Cliente;
-import com.cursomc.domain.Endereco;
-import com.cursomc.domain.Estado;
-import com.cursomc.domain.Produto;
-import com.cursomc.domain.enums.TipoCliente;
-import com.cursomc.repositories.CategoriaRepository;
-import com.cursomc.repositories.CidadeRepository;
-import com.cursomc.repositories.ClienteRepository;
-import com.cursomc.repositories.EnderecoRepository;
-import com.cursomc.repositories.EstadoRepository;
-import com.cursomc.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner{
@@ -94,6 +77,7 @@ public class CursomcApplication implements CommandLineRunner{
 		clienteRepository.saveAll(Arrays.asList(cli1));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		*/
+		
 	}
 
 }
