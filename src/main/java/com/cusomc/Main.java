@@ -1,8 +1,12 @@
 package com.cusomc;
 
 import com.cusomc.domain.Categoria;
+import com.cusomc.domain.Cidade;
+import com.cusomc.domain.Estado;
 import com.cusomc.domain.Produto;
 import com.cusomc.repositories.CategoriaRepository;
+import com.cusomc.repositories.CidadeRepository;
+import com.cusomc.repositories.EstadoRepository;
 import com.cusomc.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,6 +24,12 @@ public class Main implements CommandLineRunner {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private EstadoRepository estadoRepository;
+
+    @Autowired
+    private CidadeRepository cidadeRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
@@ -43,5 +53,18 @@ public class Main implements CommandLineRunner {
 
         categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
         produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+
+        Estado est1 = new Estado(null, "Minas Gerais");
+        Estado est2 = new Estado(null, "São Paulo");
+
+        Cidade c1 = new Cidade(null, "Uberlândia", est1);
+        Cidade c2 = new Cidade(null, "São Paulo", est2);
+        Cidade c3 = new Cidade(null, "Campinas", est2);
+
+        est1.getCidades().add(c1);
+        est2.getCidades().addAll(Arrays.asList(c2, c3));
+
+        estadoRepository.saveAll(Arrays.asList(est1, est2));
+        cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
     }
 }
