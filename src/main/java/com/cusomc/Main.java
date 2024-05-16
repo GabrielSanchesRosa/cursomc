@@ -1,13 +1,8 @@
 package com.cusomc;
 
-import com.cusomc.domain.Categoria;
-import com.cusomc.domain.Cidade;
-import com.cusomc.domain.Estado;
-import com.cusomc.domain.Produto;
-import com.cusomc.repositories.CategoriaRepository;
-import com.cusomc.repositories.CidadeRepository;
-import com.cusomc.repositories.EstadoRepository;
-import com.cusomc.repositories.ProdutoRepository;
+import com.cusomc.domain.*;
+import com.cusomc.domain.enums.TipoCliente;
+import com.cusomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,6 +25,12 @@ public class Main implements CommandLineRunner {
 
     @Autowired
     private CidadeRepository cidadeRepository;
+
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    @Autowired
+    private EnderecoRepository enderecoRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
@@ -66,5 +67,17 @@ public class Main implements CommandLineRunner {
 
         estadoRepository.saveAll(Arrays.asList(est1, est2));
         cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+
+        Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+
+        cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
+
+        Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38220834", cli1, c1);
+        Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
+
+        cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+
+        clienteRepository.save(cli1);
+        enderecoRepository.saveAll(Arrays.asList(e1, e2));
     }
 }
