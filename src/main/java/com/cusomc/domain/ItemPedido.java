@@ -1,5 +1,6 @@
 package com.cusomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 
@@ -9,6 +10,7 @@ import java.util.Objects;
 @Entity
 public class ItemPedido implements Serializable {
 
+    @JsonIgnore
     @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
 
@@ -28,6 +30,7 @@ public class ItemPedido implements Serializable {
         this.quantidade = quantidade;
     }
 
+    @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
     }
