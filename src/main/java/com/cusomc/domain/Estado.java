@@ -1,6 +1,6 @@
 package com.cusomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -16,7 +16,7 @@ public class Estado implements Serializable {
     private Integer Id;
     private String nome;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany
     @JoinColumn(name = "estado_id")
     private List<Cidade> cidades = new ArrayList<>();
