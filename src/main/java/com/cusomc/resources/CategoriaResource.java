@@ -1,6 +1,7 @@
 package com.cusomc.resources;
 
 import com.cusomc.domain.Categoria;
+import com.cusomc.dto.CategoriaDTO;
 import com.cusomc.services.CategoriaService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.net.URI;
 import java.security.Provider;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -48,5 +50,13 @@ public class CategoriaResource {
         service.delete(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CategoriaDTO>> findAll() {
+        List<Categoria> list = service.findAll();
+        List<CategoriaDTO> listDto = list.stream().map(CategoriaDTO::new).collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(listDto);
     }
 }
