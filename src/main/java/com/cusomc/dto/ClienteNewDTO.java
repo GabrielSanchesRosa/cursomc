@@ -1,20 +1,39 @@
 package com.cusomc.dto;
 
+import com.cusomc.services.validation.ClienteInsert;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
+
 import java.io.Serializable;
 
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 
+    @NotEmpty(message = "Preenchimento Obrigatório!")
+    @Length(min = 5, max = 120, message = "O tamanho de ser entre 5 e 120 caracteres!")
     private String nome;
+
+    @NotEmpty(message = "Preenchimento Obrigatório!")
+    @Email(message = "Email Inválido!")
     private String email;
+
+    @NotEmpty(message = "Preenchimento Obrigatório!")
     private String cpfOuCnpj;
     private Integer tipo;
 
+    @NotEmpty(message = "Preenchimento Obrigatório!")
     private String logradouro;
+
+    @NotEmpty(message = "Preenchimento Obrigatório!")
     private String numero;
     private String complemento;
     private String bairro;
+
+    @NotEmpty(message = "Preenchimento Obrigatório!")
     private String cep;
 
+    @NotEmpty(message = "Preenchimento Obrigatório!")
     private String telefone1;
     private String telefone2;
     private String telefone3;
