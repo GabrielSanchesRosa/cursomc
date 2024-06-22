@@ -1,6 +1,7 @@
 package com.cusomc.services;
 
 import com.cusomc.domain.Categoria;
+import com.cusomc.dto.CategoriaDTO;
 import com.cusomc.repositories.CategoriaRepository;
 import com.cusomc.services.exceptions.DataIntegrityException;
 import com.cusomc.services.exceptions.ObjectNotFoundException;
@@ -55,5 +56,9 @@ public class CategoriaService {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 
         return repo.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO objDto) {
+        return new Categoria(objDto.getId(), objDto.getNome());
     }
 }

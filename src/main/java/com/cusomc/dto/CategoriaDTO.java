@@ -1,12 +1,17 @@
 package com.cusomc.dto;
 
 import com.cusomc.domain.Categoria;
+import jakarta.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 
 public class CategoriaDTO implements Serializable {
 
     private Integer id;
+
+    @NotEmpty(message = "Preenchimento Obrigatório!")
+    @Length(min = 5, max = 80, message = "O tamanho deve ser entre 5 e 80 caracteres!")
     private String nome;
 
     public CategoriaDTO() {

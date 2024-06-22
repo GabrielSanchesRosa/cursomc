@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.List;
 
 @SpringBootApplication
 public class Main implements CommandLineRunner {
